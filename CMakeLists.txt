@@ -19,6 +19,11 @@ set(GCC_MCU_TOOLCHAIN ${MCU_TOOLCHAIN}/gcc)
 # search path for NRF52 include files
 set(NRF52_INCLUDE 
     ${NANOBOOT_ROOT}/sdks/nordic/nRF5_SDK_14.0.0_3bcc1f7/components/device
+    ${NANOBOOT_ROOT}/sdks/nordic/nRF5_SDK_14.0.0_3bcc1f7/components/drivers_nrf/hal
+    ${NANOBOOT_ROOT}/sdks/nordic/nRF5_SDK_14.0.0_3bcc1f7/components/drivers_nrf/delay
+    ${NANOBOOT_ROOT}/sdks/nordic/nRF5_SDK_14.0.0_3bcc1f7/components/libraries/util
+    ${NANOBOOT_ROOT}/sdks/nordic/nRF5_SDK_14.0.0_3bcc1f7/components/drivers_nrf/nrf_soc_nosd
+    ${NANOBOOT_ROOT}/sdks/nordic/nRF5_SDK_14.0.0_3bcc1f7/config
     ${MCU_TOOLCHAIN}/cmsis/include
     ${MCU_TOOLCHAIN}
 )

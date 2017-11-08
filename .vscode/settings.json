@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "nrf_assert.h": "c",
+        "nrf_error.h": "c"
+    }
+}

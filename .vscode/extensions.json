@@ -1,6 +1,7 @@
 {
     "recommendations": [
         "ms-vscode.powershell",
-        "twxs.cmake"
+        "twxs.cmake",
+        "vector-of-bool.cmake-tools"
     ]
 }
