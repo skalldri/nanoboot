@@ -1,0 +1,5 @@
+h
+loadfile build\testapp\testapp.hex
+r
+g
+q

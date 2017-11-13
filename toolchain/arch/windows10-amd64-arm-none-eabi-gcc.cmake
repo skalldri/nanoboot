@@ -11,10 +11,8 @@ endif()
 set(CMAKE_SYSTEM_NAME Generic)
 set(CMAKE_SYSTEM_PROCESSOR arm)
 
-# escape windows paths as needed
-file(TO_CMAKE_PATH $ENV{GCC_ROOT} GCC_ROOT)
-
-set(GCC_BIN_DIR ${GCC_ROOT}/bin)
+set(GCC_DIR ${NANOBOOT_ROOT}/nuget/packages/autom8ed.com.compilers.arm-none-eabi-gcc)
+set(GCC_BIN_DIR ${GCC_DIR}/bin)
 
 # specify the cross compiler
 # TODO: use find_program instead of hard paths
@@ -26,7 +24,7 @@ set(CMAKE_OBJDUMP      ${GCC_BIN_DIR}/arm-none-eabi-objdump.exe CACHE INTERNAL "
 set(CMAKE_OBJSIZE      ${GCC_BIN_DIR}/arm-none-eabi-size.exe CACHE INTERNAL "Objsize")
 
 # where is the target environment 
-set(CMAKE_FIND_ROOT_PATH $ENV{NANOBOOT_ROOT})
+set(CMAKE_FIND_ROOT_PATH ${NANOBOOT_ROOT})
 
 set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
 set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
@@ -40,12 +38,20 @@ set(CMAKE_EXECUTABLE_SUFFIX ".elf")
 # (compiling an ELF would be hard for this platform since it needs a linker script)
 SET(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
 
+set(NANOBOOT_INCLUDES
+    ${NANOBOOT_INCLUDES}
+    ${GCC_DIR}/arm-none-eabi/include
+    ${GCC_DIR}/arm-none-eabi/include/c++/6.3.1
+)
+
 set(NANOBOOT_COMPILE_FLAGS
     ${NANOBOOT_COMPILE_FLAGS}
     "-mthumb"
     "-mcpu=cortex-m4"
     "-mfloat-abi=hard"
     "-mfpu=fpv4-sp-d16"
+    "-fno-rtti"
+    "-fno-exceptions"
 )
 
 set(NANOBOOT_LINK_FLAGS
@@ -54,4 +60,6 @@ set(NANOBOOT_LINK_FLAGS
     "-mcpu=cortex-m4"
     "-mfloat-abi=hard"
     "-mfpu=fpv4-sp-d16"
+    "-fno-rtti"
+    "-fno-exceptions"
 )

@@ -1,21 +1,24 @@
-//#include "nrf_gpio.h"
-//#include "nrf_delay.h"
+#include <GPIO.h>
+#include <UTIL.h>
 
-//#define LED_PIN 17
+#define LED_PIN 17
+
+GPIO gpio;
+UTIL util;
 
 int main()
 {
-    //nrf_gpio_cfg_output(LED_PIN);
+    gpio.configure_output(LED_PIN);
 
     while(true)
     {
-        //nrf_gpio_pin_set(LED_PIN);
+        gpio.set(LED_PIN);
 
-        //nrf_delay_ms(1000);
+        util.delay(1000);
 
-        //nrf_gpio_pin_clear(LED_PIN);
+        gpio.clear(LED_PIN);
 
-        //nrf_delay_ms(1000);
+        util.delay(1000);
     }
 
     return 0;

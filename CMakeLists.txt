@@ -14,28 +14,28 @@ set(TESTAPP_ROOT ${NANOBOOT_ROOT}/code/testapp)
 set(1BOOT_ROOT ${NANOBOOT_ROOT}/code/1BOOT)
 set(2BOOT_ROOT ${NANOBOOT_ROOT}/code/2BOOT)
 
-# search path for GCC LD files
-set(MCU_TOOLCHAIN ${NANOBOOT_ROOT}/sdks/nordic/nRF5_SDK_14.0.0_3bcc1f7/components/toolchain)
-
-# search path for GCC LD files
-set(GCC_MCU_TOOLCHAIN ${MCU_TOOLCHAIN}/gcc)
-
-# search path for NRF52 include files
-set(NRF52_INCLUDE 
-    ${NANOBOOT_ROOT}/sdks/nordic/nRF5_SDK_14.0.0_3bcc1f7/components/device
-    ${NANOBOOT_ROOT}/sdks/nordic/nRF5_SDK_14.0.0_3bcc1f7/components/drivers_nrf/hal
-    ${NANOBOOT_ROOT}/sdks/nordic/nRF5_SDK_14.0.0_3bcc1f7/components/drivers_nrf/delay
-    ${NANOBOOT_ROOT}/sdks/nordic/nRF5_SDK_14.0.0_3bcc1f7/components/libraries/util
-    ${NANOBOOT_ROOT}/sdks/nordic/nRF5_SDK_14.0.0_3bcc1f7/components/drivers_nrf/nrf_soc_nosd
-    ${NANOBOOT_ROOT}/sdks/nordic/nRF5_SDK_14.0.0_3bcc1f7/config
-    ${MCU_TOOLCHAIN}/cmsis/include
-    ${MCU_TOOLCHAIN}
-)
-
 # define that we're using an NRF52**AA type chip (512K flash, 64k RAM)
 set(DEVICE_TARGET NRF52832_XXAA)
 
-# TODO: uncomment this when 1BOOT and 2BOOT have more meat
+# add the nanoboot HAL and the device-specific HAL
+set(NANOBOOT_SOURCES 
+    ${NANOBOOT_SOURCES}
+    ${NANOBOOT_ROOT}/code/hal/${NANOBOOT_MCU}/src/GPIO.cpp
+    ${NANOBOOT_ROOT}/code/hal/${NANOBOOT_MCU}/src/UTIL.cpp
+)
+
+set(NANOBOOT_INCLUDES
+    ${NANOBOOT_INCLUDES}
+    ${NANOBOOT_ROOT}/code/hal/base/inc
+    ${NANOBOOT_ROOT}/code/hal/${NANOBOOT_MCU}/inc
+)
+
+set(NANOBOOT_DEFINES
+    ${NANOBOOT_DEFINES}
+    NANOBOOT_MCU=${NANOBOOT_MCU}
+    NANOBOOT_MCU_ARCH=${NANOBOOT_MCU_ARCH}
+)
+
 add_subdirectory(${1BOOT_ROOT} 1BOOT)
 #add_subdirectory(code/2BOOT 2BOOT)
 add_subdirectory(${TESTAPP_ROOT} testapp)

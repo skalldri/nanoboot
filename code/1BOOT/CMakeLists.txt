@@ -20,6 +20,7 @@ target_include_directories(${TARGET} PUBLIC
     ${INCLUDE_PATHS}
 )
 
+target_compile_definitions(${TARGET} PRIVATE ${NANOBOOT_DEFINES})
 target_compile_definitions(${TARGET} PRIVATE ${DEVICE_TARGET})
 
 set_target_properties(${TARGET} PROPERTIES LINK_DEPENDS ${LD_SCRIPT})

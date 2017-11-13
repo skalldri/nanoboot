@@ -19,6 +19,7 @@ target_include_directories(${TARGET} PUBLIC
     ${INCLUDE_PATHS}
 )
 
+target_compile_definitions(${TARGET} PRIVATE ${NANOBOOT_DEFINES})
 target_compile_definitions(${TARGET} PRIVATE ${DEVICE_TARGET})
 
 set_target_properties(${TARGET} PROPERTIES LINK_DEPENDS ${LD_SCRIPT})
@@ -37,9 +38,11 @@ target_link_libraries(${TARGET} m)
 target_link_libraries(${TARGET} c)
 target_link_libraries(${TARGET} nosys)
 target_link_libraries(${TARGET} gcc)
+target_link_libraries(${TARGET} stdc++)
 target_link_libraries(${TARGET} -Wl,--end-group)
 target_link_libraries(${TARGET} -Wl,-Map=${TARGET_NAME}.map)
 target_link_libraries(${TARGET} -Wl,--gc-sections)
+
 
 #target_link_libraries(${TARGET} -L${GCC_LD_SEARCH})
 

@@ -10,5 +10,8 @@
         "utility": "cpp",
         "valarray": "cpp"
     },
-    "cmake.useCMakeServer" : false
+    "cmake.useCMakeServer" : false,
+    "C_Cpp.intelliSenseEngine": "Default",
+    "C_Cpp.errorSquiggles": "Enabled",
+    "C_Cpp.loggingLevel": "Information"
 }

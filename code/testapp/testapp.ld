@@ -1,6 +1,5 @@
 /* Linker script to configure memory regions. */
 
-SEARCH_DIR(C:\Users\skall\Documents\GitHub\nanoboot\sdks\nordic\nRF5_SDK_14.0.0_3bcc1f7\components\toolchain\gcc)
 GROUP(-lgcc -lc -lnosys)
 
 MEMORY
@@ -8,7 +7,6 @@ MEMORY
   FLASH (rx) : ORIGIN = 0x00000000, LENGTH = 0x80000
   RAM (rwx) :  ORIGIN = 0x20000000, LENGTH = 0x10000
 }
-
 
 /* Linker script for Nordic Semiconductor nRF51 devices
  *
