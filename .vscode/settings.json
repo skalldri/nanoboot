@@ -1,6 +1,14 @@
 {
     "files.associations": {
         "nrf_assert.h": "c",
-        "nrf_error.h": "c"
-    }
+        "nrf_error.h": "c",
+        "array": "cpp",
+        "bitset": "cpp",
+        "rope": "cpp",
+        "slist": "cpp",
+        "initializer_list": "cpp",
+        "utility": "cpp",
+        "valarray": "cpp"
+    },
+    "cmake.useCMakeServer" : false
 }

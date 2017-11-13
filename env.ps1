@@ -11,7 +11,6 @@ function Add-ToPath([string] $path)
 $WorkspaceRoot = $PSScriptRoot
 
 Add-ToPath -path "$PSScriptRoot\nuget"
-Add-ToPath -path "$PSScriptRoot\temp"
 
 # Install all nuget packages
 nuget.exe install "$WorkspaceRoot\nuget\packages.config" -ConfigFile "$WorkspaceRoot\nuget\nuget.config" -ExcludeVersion
@@ -25,6 +24,7 @@ Add-ToPath -path "$PSScriptRoot\nuget\packages\autom8ed.com.tools.ninja"
 # compiler
 $env:GCC_ROOT = "$PSScriptRoot\nuget\packages\autom8ed.com.compilers.arm-none-eabi-gcc"
 $env:NANOBOOT_ROOT = "$PSScriptRoot"
+$env:NUGET_PACKAGES_ROOT = "$PSScriptRoot\nuget\packages"
 
 Import-Module ".\scripts\Register-BuildEnvironment.psm1" -Force
  

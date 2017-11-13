@@ -1,2 +1,3 @@
 build/
 nuget/packages/
+.vscode/.cmaketools.json

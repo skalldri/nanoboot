@@ -2,13 +2,16 @@ cmake_minimum_required(VERSION 3.9 FATAL_ERROR)
 
 project(nanoboot VERSION 0.0.1 LANGUAGES C CXX ASM)
 
-# TODO: this needs a lot of work to generalize it for all MCUs. For now, just work on understanding Cmake and getting it to compile for NRF52
+MESSAGE("MCU: ${NANOBOOT_MCU}")
+MESSAGE("MCU ARCH: ${NANOBOOT_MCU_ARCH}")
 
 # set the root nanoboot folder so other projects can use this as a starting point
 set(NANOBOOT_ROOT ${CMAKE_CURRENT_SOURCE_DIR})
 
 # root of the TESTAPP project
 set(TESTAPP_ROOT ${NANOBOOT_ROOT}/code/testapp)
+set(1BOOT_ROOT ${NANOBOOT_ROOT}/code/1BOOT)
+set(2BOOT_ROOT ${NANOBOOT_ROOT}/code/2BOOT)
 
 # search path for GCC LD files
 set(MCU_TOOLCHAIN ${NANOBOOT_ROOT}/sdks/nordic/nRF5_SDK_14.0.0_3bcc1f7/components/toolchain)
@@ -32,6 +35,6 @@ set(NRF52_INCLUDE
 set(DEVICE_TARGET NRF52832_XXAA)
 
 # TODO: uncomment this when 1BOOT and 2BOOT have more meat
-#add_subdirectory(code/1BOOT 1BOOT)
+add_subdirectory(${1BOOT_ROOT} 1BOOT)
 #add_subdirectory(code/2BOOT 2BOOT)
 add_subdirectory(${TESTAPP_ROOT} testapp)
