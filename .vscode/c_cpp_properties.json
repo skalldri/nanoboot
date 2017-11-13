@@ -1,0 +1,42 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "compileCommands": "${workspaceRoot}/build/compile_commands.json",
+            "includePath": [
+                "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Tools/MSVC/14.11.25503/include/*",
+                "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Tools/MSVC/14.11.25503/atlmfc/include/*",
+                "C:/Program Files (x86)/Windows Kits/10/Include/10.0.15063.0/um",
+                "C:/Program Files (x86)/Windows Kits/10/Include/10.0.15063.0/ucrt",
+                "C:/Program Files (x86)/Windows Kits/10/Include/10.0.15063.0/shared",
+                "C:/Program Files (x86)/Windows Kits/10/Include/10.0.15063.0/winrt",
+                "${workspaceRoot}/code/common/inc",
+                "${workspaceRoot}/code/1BOOT/inc",
+                "${workspaceRoot}/code/2BOOT/inc",
+                "${workspaceRoot}/sdks"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE"
+            ],
+            "intelliSenseMode": "msvc-x64",
+            "browse": {
+                "path": [
+                    "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Tools/MSVC/14.11.25503/include/*",
+                    "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Tools/MSVC/14.11.25503/atlmfc/include/*",
+                    "C:/Program Files (x86)/Windows Kits/10/Include/10.0.15063.0/um",
+                    "C:/Program Files (x86)/Windows Kits/10/Include/10.0.15063.0/ucrt",
+                    "C:/Program Files (x86)/Windows Kits/10/Include/10.0.15063.0/shared",
+                    "C:/Program Files (x86)/Windows Kits/10/Include/10.0.15063.0/winrt",
+                    "${workspaceRoot}/code/common/inc",
+                    "${workspaceRoot}/code/1BOOT/inc",
+                    "${workspaceRoot}/code/2BOOT/inc",
+                    "${workspaceRoot}/sdks"
+                ],
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": ""
+            }
+        }
+    ],
+    "version": 3
+}

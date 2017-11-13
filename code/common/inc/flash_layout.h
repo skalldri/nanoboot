@@ -24,7 +24,6 @@
     #define APP_MAX_SIZE            ((FLASH_SIZE - MAX_SIZE_1BOOT - MAX_SIZE_2BOOT) / 2)
     #define APP_START_ADDRESS       (2BOOT_START_ADDRESS + 2BOOT_MAX_SIZE)
 
-
 // Add more devices here
 #else
     #error "No device defined"

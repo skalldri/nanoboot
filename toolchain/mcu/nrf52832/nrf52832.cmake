@@ -6,8 +6,6 @@ file(TO_CMAKE_PATH $ENV{NANOBOOT_ROOT} NANOBOOT_ROOT)
 set(NANOBOOT_MCU nrf52832)
 set(NANOBOOT_MCU_ARCH arm)
 
-MESSAGE("NANOBOOT ROOT: ${NANOBOOT_ROOT}")
-
 # Add include paths for the Nordic SDK
 set(NANOBOOT_INCLUDES
     ${NANOBOOT_ROOT}/sdks/nordic/nRF5_SDK_14.0.0_3bcc1f7/components/device

@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.9 FATAL_ERROR)
+set(CMAKE_EXPORT_COMPILE_COMMANDS)
 
 project(nanoboot VERSION 0.0.1 LANGUAGES C CXX ASM)
 
