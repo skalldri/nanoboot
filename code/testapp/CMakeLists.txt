@@ -20,12 +20,13 @@ target_include_directories(${TARGET} PUBLIC
 )
 
 target_compile_definitions(${TARGET} PRIVATE ${NANOBOOT_DEFINES})
-target_compile_definitions(${TARGET} PRIVATE ${DEVICE_TARGET})
 
 set_target_properties(${TARGET} PROPERTIES LINK_DEPENDS ${LD_SCRIPT})
 
 # Import all compile options defined in the toolchain
 target_compile_options(${TARGET} PUBLIC ${NANOBOOT_COMPILE_FLAGS})
+
+target_compile_options(${TARGET} PUBLIC -Os)
 
 # Import all link options defined in the toolchain
 target_link_libraries(${TARGET} ${NANOBOOT_LINK_FLAGS})

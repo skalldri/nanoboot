@@ -8,7 +8,9 @@
         "slist": "cpp",
         "initializer_list": "cpp",
         "utility": "cpp",
-        "valarray": "cpp"
+        "valarray": "cpp",
+        "random": "cpp",
+        "cstdint": "cpp"
     },
     "cmake.useCMakeServer" : false,
     "C_Cpp.intelliSenseEngine": "Default",

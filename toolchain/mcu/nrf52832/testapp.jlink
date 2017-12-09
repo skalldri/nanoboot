@@ -1,5 +1,5 @@
 h
-loadfile build\testapp\testapp.hex
+loadfile build\1BOOT\1BOOT.hex
 r
 g
 q

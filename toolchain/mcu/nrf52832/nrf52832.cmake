@@ -6,6 +6,12 @@ file(TO_CMAKE_PATH $ENV{NANOBOOT_ROOT} NANOBOOT_ROOT)
 set(NANOBOOT_MCU nrf52832)
 set(NANOBOOT_MCU_ARCH arm)
 
+# define that we're using an NRF52**AA type chip (512K flash, 64k RAM)
+set(NANOBOOT_DEFINES 
+    ${NANOBOOT_DEFINES}
+    NRF52832_XXAA
+)
+
 # Add include paths for the Nordic SDK
 set(NANOBOOT_INCLUDES
     ${NANOBOOT_ROOT}/sdks/nordic/nRF5_SDK_14.0.0_3bcc1f7/components/device

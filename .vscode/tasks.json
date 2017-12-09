@@ -4,9 +4,15 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "echo",
+            "label": "Flash 1BOOT",
             "type": "shell",
-            "command": "echo Hello"
+            "command": "powershell",
+            "args": [
+                "scripts\\Flash-Hex.ps1",
+                "-appHex",
+                "build\\1BOOT\\1BOOT.hex"
+            ],
+            "problemMatcher": []
         }
     ]
 }

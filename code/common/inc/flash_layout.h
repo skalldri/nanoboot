@@ -1,4 +1,6 @@
 #pragma once
+#include <cstdint>
+#include "assert.h"
 
 // This file defines a set of constants that identify the flash properties of a device
 // These symbols are device specific:
@@ -13,6 +15,27 @@
 //
 // This file also defines a set of simple functions which must be implemented for each platform
 
+struct MetadataHeader {
+    uint32_t crc32;
+    uint32_t platformId : 28;
+    uint32_t sector : 4;
+    uint32_t imageSize;
+    uint32_t majorVersion;
+    uint32_t minorVersion;
+    uint32_t revision;
+    uint32_t dc0StartAddress;
+    uint32_t dc0Size;
+    uint32_t ivtStartAddress;
+    uint32_t ivtSize;
+    uint32_t dc1StartAddress;
+    uint32_t dc1Size;
+    uint32_t appStartAddress;
+    uint32_t appSize;
+    uint32_t appEntryPoint;
+    uint32_t reserved[17];
+};
+
+static_assert(sizeof(MetadataHeader) == 128, "MetadataHeader must be 128 bytes");
 
 #if defined(NRF52832_XXAA)
 

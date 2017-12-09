@@ -1,10 +1,10 @@
-#include <GPIO.h>
-#include <UTIL.h>
+#include <gpio.h>
+#include <util.h>
 
 #define LED_PIN 17
 
 GPIO gpio;
-UTIL util;
+Util util;
 
 int main()
 {

@@ -1,11 +1,11 @@
 #pragma once
 
-#include <UTIL_base.h>
+#include <util_base.h>
 
-class UTIL_impl {
+class Util_impl : public Util_base {
 
 public:
     void delay(uint16_t ms);
 };
 
-typedef UTIL_impl UTIL;
+typedef Util_impl Util;

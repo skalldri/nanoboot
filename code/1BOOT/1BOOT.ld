@@ -1,6 +1,5 @@
 /* Linker script to configure memory regions. */
 
-SEARCH_DIR(C:\Users\skall\Documents\GitHub\nanoboot\sdks\nordic\nRF5_SDK_14.0.0_3bcc1f7\components\toolchain\gcc)
 GROUP(-lgcc -lc -lnosys)
 
 MEMORY

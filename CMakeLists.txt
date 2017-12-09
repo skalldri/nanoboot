@@ -14,14 +14,11 @@ set(TESTAPP_ROOT ${NANOBOOT_ROOT}/code/testapp)
 set(1BOOT_ROOT ${NANOBOOT_ROOT}/code/1BOOT)
 set(2BOOT_ROOT ${NANOBOOT_ROOT}/code/2BOOT)
 
-# define that we're using an NRF52**AA type chip (512K flash, 64k RAM)
-set(DEVICE_TARGET NRF52832_XXAA)
-
 # add the nanoboot HAL and the device-specific HAL
 set(NANOBOOT_SOURCES 
     ${NANOBOOT_SOURCES}
-    ${NANOBOOT_ROOT}/code/hal/${NANOBOOT_MCU}/src/GPIO.cpp
-    ${NANOBOOT_ROOT}/code/hal/${NANOBOOT_MCU}/src/UTIL.cpp
+    ${NANOBOOT_ROOT}/code/hal/${NANOBOOT_MCU}/src/gpio.cpp
+    ${NANOBOOT_ROOT}/code/hal/${NANOBOOT_MCU}/src/util.cpp
 )
 
 set(NANOBOOT_INCLUDES

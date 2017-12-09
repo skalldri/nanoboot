@@ -1,4 +1,4 @@
-#include <GPIO.h>
+#include <gpio.h>
 #include <nrf_gpio.h>
 
 bool GPIO_impl::read(uint16_t pin)

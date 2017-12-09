@@ -2,8 +2,9 @@
 
 #include <cstdint>
 
-class UTIL_base {
+class Util_base {
 
 public:
-    virtual bool delay(uint16_t ms) = 0;
+    virtual void delay(uint16_t ms) = 0;
+
 };
