@@ -6,11 +6,12 @@ set(LD_SCRIPT ${1BOOT_ROOT}/1BOOT.ld)
 set(SOURCE_FILE_PATHS
     ${NANOBOOT_SOURCES}
     ${1BOOT_ROOT}/src/main.cpp
+    ${COMMON_ROOT}/src/crc32.cpp
 )
 
 set(INCLUDE_PATHS
     ${NANOBOOT_INCLUDES}
-    ${NANOBOOT_ROOT}/code/common/inc
+    ${COMMON_ROOT}/inc
 )
 
 # Add a new executable that we want CMake to compile
@@ -27,7 +28,7 @@ set_target_properties(${TARGET} PROPERTIES LINK_DEPENDS ${LD_SCRIPT})
 # Import all compile options defined in the toolchain
 target_compile_options(${TARGET} PUBLIC ${NANOBOOT_COMPILE_FLAGS})
 
-target_compile_options(${TARGET} PUBLIC -Os)
+#target_compile_options(${TARGET} PUBLIC -Os)
 
 # Import all link options defined in the toolchain
 target_link_libraries(${TARGET} ${NANOBOOT_LINK_FLAGS})

@@ -13,6 +13,16 @@
                 "build\\1BOOT\\1BOOT.hex"
             ],
             "problemMatcher": []
+        },
+        {
+            "label": "Start GDB Server",
+            "type": "shell",
+            "command": "powershell",
+            "args": [
+                "scripts\\Start-GDBServer.ps1"
+            ],
+            "problemMatcher": [],
+            "isBackground": true
         }
     ]
 }

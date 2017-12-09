@@ -10,7 +10,8 @@
         "utility": "cpp",
         "valarray": "cpp",
         "random": "cpp",
-        "cstdint": "cpp"
+        "cstdint": "cpp",
+        "system_error": "cpp"
     },
     "cmake.useCMakeServer" : false,
     "C_Cpp.intelliSenseEngine": "Default",

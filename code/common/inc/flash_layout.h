@@ -37,17 +37,19 @@ struct MetadataHeader {
 
 static_assert(sizeof(MetadataHeader) == 128, "MetadataHeader must be 128 bytes");
 
-#if defined(NRF52832_XXAA)
+extern int __FLASH_START_ADDRESS;
+extern int __FLASH_SIZE;
+extern int __RAM_START_ADDRESS;
+extern int __RAM_SIZE;
+extern int __MAX_SIZE_1BOOT;
+extern int __START_ADDRESS_1BOOT;
+extern int __MAX_SIZE_2BOOT;
 
-    #define FLASH_SIZE              0x80000
-    #define MAX_SIZE_1BOOT          0x1000
-    #define START_ADDRESS_1BOOT     0x00000000
-    #define MAX_SIZE_2BOOT          0x1000
-    #define START_ADDRESS_2BOOT     (START_ADDRESS_1BOOT + MAX_SIZE_1BOOT)
-    #define APP_MAX_SIZE            ((FLASH_SIZE - MAX_SIZE_1BOOT - MAX_SIZE_2BOOT) / 2)
-    #define APP_START_ADDRESS       (2BOOT_START_ADDRESS + 2BOOT_MAX_SIZE)
-
-// Add more devices here
-#else
-    #error "No device defined"
-#endif
+#define FLASH_START_ADDRESS     ((uint32_t)(&__FLASH_START_ADDRESS))
+#define FLASH_SIZE              ((uint32_t)(&__FLASH_SIZE))
+#define MAX_SIZE_1BOOT          ((uint32_t)(&__MAX_SIZE_1BOOT))
+#define START_ADDRESS_1BOOT     ((uint32_t)(&__START_ADDRESS_1BOOT))
+#define MAX_SIZE_2BOOT          ((uint32_t)(&__MAX_SIZE_2BOOT))
+#define START_ADDRESS_2BOOT     (START_ADDRESS_1BOOT + MAX_SIZE_1BOOT)
+#define APP_MAX_SIZE            ((FLASH_SIZE - MAX_SIZE_1BOOT - MAX_SIZE_2BOOT) / 2)
+#define APP_START_ADDRESS       (2BOOT_START_ADDRESS + 2BOOT_MAX_SIZE)

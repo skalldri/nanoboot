@@ -1,13 +1,14 @@
 /* Linker script to configure memory regions. */
 
+INCLUDE flash_layout.ld
+
 GROUP(-lgcc -lc -lnosys)
 
 MEMORY
 {
-  FLASH (rx) : ORIGIN = 0x00000000, LENGTH = 0x1000
-  RAM (rwx) :  ORIGIN = 0x20000000, LENGTH = 0x10000
+  FLASH (rx) : ORIGIN = __FLASH_START_ADDRESS, LENGTH = __MAX_SIZE_1BOOT
+  RAM (rwx) :  ORIGIN = __RAM_START_ADDRESS, LENGTH = __RAM_SIZE
 }
-
 
 /* Linker script for Nordic Semiconductor nRF51 devices
  *

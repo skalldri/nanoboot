@@ -1,0 +1,8 @@
+__FLASH_START_ADDRESS   = 0x0;
+__FLASH_SIZE            = 0x80000;
+__RAM_START_ADDRESS     = 0x20000000;
+__RAM_SIZE              = 0x10000;
+
+__MAX_SIZE_1BOOT        = 0x1000;
+__START_ADDRESS_1BOOT   = 0x00000000;
+__MAX_SIZE_2BOOT        = 0x1000;
