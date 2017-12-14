@@ -1,5 +1,7 @@
 #pragma once
+
 #include <cstdint>
+#include <sys\param.h>
 #include "assert.h"
 
 // This file defines a set of constants that identify the flash properties of a device
@@ -17,9 +19,10 @@
 
 struct MetadataHeader {
     uint32_t crc32;
+    uint32_t imageSize;
     uint32_t platformId : 28;
     uint32_t sector : 4;
-    uint32_t imageSize;
+    uint32_t magicNumber;
     uint32_t majorVersion;
     uint32_t minorVersion;
     uint32_t revision;
@@ -32,10 +35,27 @@ struct MetadataHeader {
     uint32_t appStartAddress;
     uint32_t appSize;
     uint32_t appEntryPoint;
-    uint32_t reserved[17];
+    uint32_t reserved[16];
 };
 
 static_assert(sizeof(MetadataHeader) == 128, "MetadataHeader must be 128 bytes");
+
+// The interrupt vector table which is common to all Cortex-M devices
+struct VectorTableCommon {
+    uint32_t stack;
+    uint32_t resetHandler;                      // 1
+    uint32_t nmiHandler;                        // 2
+    uint32_t hardFaultHandler;                  // 3
+    uint32_t memoryManagerFaultHandler;         // 4
+    uint32_t busFaultHandler;                   // 5
+    uint32_t usageFaultHandler;                 // 6
+    uint32_t reserved[4];                       // 7, 8, 9, 10
+    uint32_t svCallHandler;                     // 11
+    uint32_t debugHandler;                      // 12
+    uint32_t reserved2;                         // 13
+    uint32_t pendSvHandler;                     // 14
+    uint32_t systickHandler;                    // 15
+};
 
 extern int __FLASH_START_ADDRESS;
 extern int __FLASH_SIZE;
@@ -44,12 +64,26 @@ extern int __RAM_SIZE;
 extern int __MAX_SIZE_1BOOT;
 extern int __START_ADDRESS_1BOOT;
 extern int __MAX_SIZE_2BOOT;
+extern int __START_ADDRESS_2BOOT;
+extern int __MAX_SIZE_APP;
+extern int __START_ADDRESS_APP;
+extern int __MAX_SIZE_SCRATCH;
+extern int __START_ADDRESS_SCRATCH;
 
 #define FLASH_START_ADDRESS     ((uint32_t)(&__FLASH_START_ADDRESS))
 #define FLASH_SIZE              ((uint32_t)(&__FLASH_SIZE))
+
 #define MAX_SIZE_1BOOT          ((uint32_t)(&__MAX_SIZE_1BOOT))
 #define START_ADDRESS_1BOOT     ((uint32_t)(&__START_ADDRESS_1BOOT))
+
 #define MAX_SIZE_2BOOT          ((uint32_t)(&__MAX_SIZE_2BOOT))
-#define START_ADDRESS_2BOOT     (START_ADDRESS_1BOOT + MAX_SIZE_1BOOT)
-#define APP_MAX_SIZE            ((FLASH_SIZE - MAX_SIZE_1BOOT - MAX_SIZE_2BOOT) / 2)
-#define APP_START_ADDRESS       (2BOOT_START_ADDRESS + 2BOOT_MAX_SIZE)
+#define START_ADDRESS_2BOOT     ((uint32_t)(&__START_ADDRESS_2BOOT))
+
+#define MAX_SIZE_APP            ((uint32_t)(&__MAX_SIZE_APP))
+#define START_ADDRESS_APP       ((uint32_t)(&__START_ADDRESS_APP))
+
+#define MAX_SIZE_SCRATCH        ((uint32_t)(&__MAX_SIZE_SCRATCH))
+#define START_ADDRESS_SCRATCH   ((uint32_t)(&__START_ADDRESS_SCRATCH))
+
+#define IMAGE_MAX_SIZE          (MAX(MAX_SIZE_2BOOT, MAX_SIZE_APP))
+#define IMAGE_MIN_SIZE          (sizeof(MetadataHeader))

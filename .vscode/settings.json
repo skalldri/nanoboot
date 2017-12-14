@@ -16,5 +16,8 @@
     "cmake.useCMakeServer" : false,
     "C_Cpp.intelliSenseEngine": "Default",
     "C_Cpp.errorSquiggles": "Enabled",
-    "C_Cpp.loggingLevel": "Information"
+    "C_Cpp.loggingLevel": "Information",
+    "search.exclude": {
+        "build": true
+    }
 }

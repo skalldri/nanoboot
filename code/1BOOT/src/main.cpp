@@ -1,28 +1,41 @@
 #include "flash_layout.h"
-#include "crc32.h"
+#include <crc32.h>
 #include <util.h>
 #include <gpio.h>
 
 #define LED_PIN 17
 #define INTER_BLINK_LENGTH 100
+#define TINY_BLINK_LENGTH  80
 #define SHORT_BLINK_LENGTH 500
 #define LONG_BLINK_LENGTH  1000
 
 MetadataHeader* slot2BOOT = (MetadataHeader*)(START_ADDRESS_2BOOT);
-
-uint32_t testBlob[] = {0xDEADBEEF, 0x0BADC0DE, 0xC0FEBABE, 0x00000000};
+MetadataHeader* slotScratch = (MetadataHeader*)(START_ADDRESS_SCRATCH);
 
 // Function declarations
 void SOS();
+void HCF();
 
 // Function implementations
 int main()
 {
-    uint32_t crc = crc32((uint8_t*)testBlob, 1 * sizeof(uint32_t));
-
-    if (crc != 0xF9B8929D)
+    // TODO: Implement testing framework
+    if(TestCRC() != E_OK)
     {
-        SOS();
+        HCF();
+    }
+
+    // Validate the 2BOOT image in flash
+    NANO_ERROR status2BOOT = ValidateImage(slot2BOOT);
+
+    // Check the scratch area to see if it contains a 2BOOT image
+    NANO_ERROR statusScratch = ValidateImage(slot2BOOT);
+
+    // If the scratch area contains a valid image, 
+    // we should try to copy it into the correct sector
+    if (statusScratch == E_OK)
+    {
+        
     }
 
     // Unable to find a valid 2BOOT image... device is bricked and requires JTAG to repair.
@@ -72,4 +85,25 @@ void SOS()
 
     // Wait 2 seconds between patterns
     util.delay(2000);
+}
+
+// HCF = Halt And Catch Fire
+// This function will form the core of the Nanoboot critical fault handling
+// This function traps the processor in an infinite loop, blinking the LED
+// at a constant rate. The device must be rest to escape the loop.
+void HCF()
+{
+    GPIO gpio;
+    Util util;
+
+    gpio.configure_output(LED_PIN);
+
+    // 3 quick blinks
+    while(true)
+    {
+        gpio.set(LED_PIN);
+        util.delay(TINY_BLINK_LENGTH);
+        gpio.clear(LED_PIN);
+        util.delay(TINY_BLINK_LENGTH);
+    }
 }   

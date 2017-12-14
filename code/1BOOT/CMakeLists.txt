@@ -28,7 +28,10 @@ set_target_properties(${TARGET} PROPERTIES LINK_DEPENDS ${LD_SCRIPT})
 # Import all compile options defined in the toolchain
 target_compile_options(${TARGET} PUBLIC ${NANOBOOT_COMPILE_FLAGS})
 
-#target_compile_options(${TARGET} PUBLIC -Os)
+target_compile_options(${TARGET} PUBLIC -Og)
+target_compile_options(${TARGET} PUBLIC -ffunction-sections)
+#target_compile_options(${TARGET} PUBLIC -flto)
+
 
 # Import all link options defined in the toolchain
 target_link_libraries(${TARGET} ${NANOBOOT_LINK_FLAGS})
@@ -44,6 +47,8 @@ target_link_libraries(${TARGET} gcc)
 target_link_libraries(${TARGET} -Wl,--end-group)
 target_link_libraries(${TARGET} -Wl,-Map=${TARGET_NAME}.map)
 target_link_libraries(${TARGET} -Wl,--gc-sections)
+#target_link_libraries(${TARGET} -Wl,-flto)
+target_link_libraries(${TARGET} -Og)
 
 #target_link_libraries(${TARGET} -L${GCC_LD_SEARCH})
 
