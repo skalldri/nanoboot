@@ -4,6 +4,10 @@
 #include <sys\param.h>
 #include "assert.h"
 
+#if (!defined(NANOBOOT_PLATFORM))
+    #error "NANOBOOT_PLATFORM is not defined. Please define a value for NANOBOOT_PLATFORM in the MCU's CMAKE file"
+#endif
+
 // This file defines a set of constants that identify the flash properties of a device
 // These symbols are device specific:
 //
@@ -17,6 +21,8 @@
 //
 // This file also defines a set of simple functions which must be implemented for each platform
 
+// The metadata header which is detected by nanoboot to identify valid images
+#pragma pack(push, 1)
 struct MetadataHeader {
     uint32_t crc32;
     uint32_t imageSize;
@@ -26,19 +32,23 @@ struct MetadataHeader {
     uint32_t majorVersion;
     uint32_t minorVersion;
     uint32_t revision;
-    uint32_t dc0StartAddress;
     uint32_t dc0Size;
-    uint32_t ivtStartAddress;
     uint32_t ivtSize;
-    uint32_t dc1StartAddress;
     uint32_t dc1Size;
-    uint32_t appStartAddress;
-    uint32_t appSize;
-    uint32_t appEntryPoint;
-    uint32_t reserved[16];
+    uint32_t reserved[22];
 };
-
+#pragma pack(pop)
 static_assert(sizeof(MetadataHeader) == 128, "MetadataHeader must be 128 bytes");
+
+#define HEADER_MAGIC_NUMBER 0x4F4E414E
+
+enum ImageSector {
+    ZERO_RESERVED = 0,
+    ONE_BOOT      = 1,
+    TWO_BOOT      = 2,
+    APP           = 3,
+    MAX_RESERVED  = 0xF
+};
 
 // The interrupt vector table which is common to all Cortex-M devices
 struct VectorTableCommon {

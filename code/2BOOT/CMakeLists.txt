@@ -1,13 +1,13 @@
-set(TARGET_NAME 1BOOT)
+set(TARGET_NAME 2BOOT)
 set(TARGET ${TARGET_NAME}.elf)
 
-set(LD_SCRIPT ${1BOOT_ROOT}/${TARGET_NAME}.ld)
+set(LD_SCRIPT ${2BOOT_ROOT}/${TARGET_NAME}.ld)
 
 set(SOURCE_FILE_PATHS
     ${NANOBOOT_SOURCES}
-    ${1BOOT_ROOT}/src/main.cpp
+    ${2BOOT_ROOT}/src/main.cpp
+    ${2BOOT_ROOT}/src/header.cpp
     ${COMMON_ROOT}/src/crc32.cpp
-    ${COMMON_ROOT}/src/utils.cpp
 )
 
 set(INCLUDE_PATHS

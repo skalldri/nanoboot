@@ -1,0 +1,5 @@
+h
+loadfile build\2BOOT\2BOOT.hex
+r
+g
+q

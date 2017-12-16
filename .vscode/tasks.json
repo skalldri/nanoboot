@@ -9,8 +9,19 @@
             "command": "powershell",
             "args": [
                 "scripts\\Flash-Hex.ps1",
-                "-appHex",
-                "build\\1BOOT\\1BOOT.hex"
+                "-jlinkFile",
+                "code\\1BOOT\\1BOOT.jlink"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Flash 2BOOT",
+            "type": "shell",
+            "command": "powershell",
+            "args": [
+                "scripts\\Flash-Hex.ps1",
+                "-jlinkFile",
+                "code\\2BOOT\\2BOOT.jlink"
             ],
             "problemMatcher": []
         },

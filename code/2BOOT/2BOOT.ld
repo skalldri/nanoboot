@@ -6,7 +6,7 @@ GROUP(-lgcc -lc -lnosys)
 
 MEMORY
 {
-  FLASH (rx) : ORIGIN = __START_ADDRESS_1BOOT, LENGTH = __MAX_SIZE_1BOOT
+  FLASH (rx) : ORIGIN = __START_ADDRESS_2BOOT, LENGTH = __MAX_SIZE_2BOOT
   RAM (rwx) :  ORIGIN = __RAM_START_ADDRESS, LENGTH = __RAM_SIZE
 }
 
@@ -62,6 +62,7 @@ SECTIONS
 {
     .text :
     {
+        KEEP(*(.header))
         KEEP(*(.isr_vector))
         *(.text*)
 

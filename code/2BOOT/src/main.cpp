@@ -2,7 +2,6 @@
 #include <crc32.h>
 #include <util.h>
 #include <gpio.h>
-#include <utils.h>
 
 #define LED_PIN 17
 #define INTER_BLINK_LENGTH 100
@@ -13,6 +12,7 @@
 MetadataHeader* slot2BOOT = (MetadataHeader*)(START_ADDRESS_2BOOT);
 MetadataHeader* slotScratch = (MetadataHeader*)(START_ADDRESS_SCRATCH);
 
+
 // Function declarations
 void SOS();
 void HCF();
@@ -20,36 +20,47 @@ void HCF();
 // Function implementations
 int main()
 {
-    // TODO: Implement testing framework
-    if(TestCRC() != E_OK)
-    {
-        HCF();
-    }
+    GPIO gpio;
+    Util util;
 
-    // Check the scratch area to see if it contains a valid image
-    NANO_ERROR statusScratch = ValidateImage(slotScratch);
+    gpio.configure_output(LED_PIN);
+    gpio.clear(LED_PIN);
 
-    // If the scratch area contains a valid image, 
-    // we should try to copy it into the correct sector
-    if (statusScratch == E_OK)
-    {
-
-    }
-
-    // Validate the 2BOOT image in flash
-    NANO_ERROR status2BOOT = ValidateImage(slot2BOOT);
-
-    // Try and start 2BOOT
-    if (status2BOOT == E_OK)
-    {
-        StartImageFromFlash(slot2BOOT);
-    }
-
-    // Unable to find a valid 2BOOT image... device is bricked and requires JTAG to repair.
-    // Blink our SOS pattern to indicate we're hosed
+    // Do something fun in 2BOOT for now... PWM the LED (using our internal timer)
     while (true)
     {
-        SOS();
+        gpio.clear(LED_PIN);
+
+        // Fade up. We only get ms resolution on our basic timer, which limits our pulse-width accuracy
+        // Say we want an LED refresh rate of 50 Hz -> 20ms per frame
+        // Therefore we have 20 brightness levels: all 20ms illuminated, all 20ms dark, and every 1ms increment in between
+        // Each frame is 20ms. Say we want 100ms at each brightness level
+        #define PWM_BRIGHTNESS_TIME_MS 100
+        #define PWM_FRAME_WIDTH_MS 20
+
+        // Fade in
+        for(uint32_t i = 0; i < PWM_FRAME_WIDTH_MS; i++)
+        {
+            for(uint32_t k = 0; k < PWM_BRIGHTNESS_TIME_MS; k += PWM_FRAME_WIDTH_MS)
+            {
+                gpio.clear(LED_PIN);
+                util.delay(i);
+                gpio.set(LED_PIN);
+                util.delay(PWM_FRAME_WIDTH_MS - i);
+            }
+        }
+
+        // Fade out
+        for(uint32_t i = 0; i < PWM_FRAME_WIDTH_MS; i++)
+        {
+            for(uint32_t k = 0; k < PWM_BRIGHTNESS_TIME_MS; k += PWM_FRAME_WIDTH_MS)
+            {
+                gpio.clear(LED_PIN);
+                util.delay(PWM_FRAME_WIDTH_MS - i);
+                gpio.set(LED_PIN);
+                util.delay(i);
+            }
+        }
     }
 
     return 0;

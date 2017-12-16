@@ -5,6 +5,7 @@ file(TO_CMAKE_PATH $ENV{NANOBOOT_ROOT} NANOBOOT_ROOT)
 # Set global nanoboot variables needed for all platforms
 set(NANOBOOT_MCU nrf52832)
 set(NANOBOOT_MCU_ARCH arm)
+set(NANOBOOT_PLATFORM 1)
 
 # define that we're using an NRF52**AA type chip (512K flash, 64k RAM)
 set(NANOBOOT_DEFINES 

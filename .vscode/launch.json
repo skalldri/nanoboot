@@ -42,6 +42,48 @@
                 }
             ],
             "targetArchitecture": "arm"
+        },
+        {
+            "name": "2BOOT Launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/2BOOT/2BOOT.elf",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/build/2BOOT",
+            "environment": [],
+            "externalConsole": true,
+            "MIMode": "gdb",
+            "miDebuggerPath": "${workspaceFolder}/nuget/packages/autom8ed.com.compilers.arm-none-eabi-gcc/bin/arm-none-eabi-gdb.exe",
+            "miDebuggerServerAddress": "localhost:2331",
+            "customLaunchSetupCommands": [
+                {
+                    "description": "Connect to remote GDB server",
+                    "text": "target remote :2331",
+                    "ignoreFailures": false
+                },
+                {
+                    "description": "Stop program execution",
+                    "text": "monitor halt",
+                    "ignoreFailures": false
+                },
+                {
+                    "description": "Load the ELF file for the program from disk",
+                    "text": "file ../../../../build/2BOOT/2BOOT.elf",
+                    "ignoreFailures": false
+                },
+                {
+                    "description": "Load the ELF file for the program into the MCU",
+                    "text": "load",
+                    "ignoreFailures": false
+                },
+                {
+                    "description": "Start program execution",
+                    "text": "monitor reset",
+                    "ignoreFailures": false
+                }
+            ],
+            "targetArchitecture": "arm"
         }
     ],
     "compounds": []
