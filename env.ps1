@@ -17,6 +17,7 @@ nuget.exe install "$WorkspaceRoot\nuget\packages.config" -ConfigFile "$Workspace
 
 Add-ToPath -path "$PSScriptRoot\nuget\packages\autom8ed.com.tools.cmake\bin"
 Add-ToPath -path "$PSScriptRoot\nuget\packages\autom8ed.com.tools.ninja"
+Add-ToPath -path "$PSScriptRoot\nuget\packages\autom8ed.com.tools.srecord"
 
 # Try to detect a J-Link installation
 # Check Program Files (x86) first

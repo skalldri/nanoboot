@@ -22,5 +22,8 @@ void StartImageFromFlash(MetadataHeader* image)
     
     fptr AppEntryPoint = (fptr)vectorTable->resetHandler;
 
+    // TODO: reset stack pointer before jumping into app
+    // TODO: use a naked function call to ensure we don't put useless return values on the stack
+    
     AppEntryPoint();
 }
