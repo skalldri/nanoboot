@@ -1,14 +1,8 @@
 param([string]$appBin)
 
-function Get-Word($bytes, $startIndex)
-{
-    [int] $word = ([int]$bytes[$startIndex])
-    [int] $word = $word -bor (([int]$bytes[$startIndex + 1]) -shl (1*8))
-    [int] $word = $word -bor (([int]$bytes[$startIndex + 2]) -shl (2*8))
-    [int] $word = $word -bor (([int]$bytes[$startIndex + 3]) -shl (3*8))
+Import-Module "$PSScriptRoot\Utils.psm1" -Force
 
-    return $word
-}
+$appBin = Resolve-Path -Path $appBin
 
 $bytes = [System.IO.File]::ReadAllBytes($appBin)
 

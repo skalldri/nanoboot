@@ -22,6 +22,7 @@ set(CMAKE_ASM_COMPILER ${GCC_BIN_DIR}/arm-none-eabi-gcc.exe CACHE INTERNAL "ASM"
 set(CMAKE_OBJCOPY      ${GCC_BIN_DIR}/arm-none-eabi-objcopy.exe CACHE INTERNAL "Objcopy")
 set(CMAKE_OBJDUMP      ${GCC_BIN_DIR}/arm-none-eabi-objdump.exe CACHE INTERNAL "Objdump")
 set(CMAKE_OBJSIZE      ${GCC_BIN_DIR}/arm-none-eabi-size.exe CACHE INTERNAL "Objsize")
+set(SIGN_BINARY        powershell.exe ${NANOBOOT_ROOT}/scripts/Sign-Binary.ps1 "Sign-Binary")
 
 # where is the target environment 
 set(CMAKE_FIND_ROOT_PATH ${NANOBOOT_ROOT})

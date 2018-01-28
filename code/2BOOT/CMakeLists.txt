@@ -61,4 +61,6 @@ set(BIN_FILE ${TARGET_NAME}.bin)
 add_custom_command(TARGET ${TARGET} POST_BUILD
     COMMAND ${CMAKE_OBJCOPY} -Oihex $<TARGET_FILE:${TARGET_NAME}.elf> ${HEX_FILE}
     COMMAND ${CMAKE_OBJCOPY} -Obinary $<TARGET_FILE:${TARGET_NAME}.elf> ${BIN_FILE}
-    COMMENT "Building ${HEX_FILE} \nBuilding ${BIN_FILE}")
+    COMMAND ${SIGN_BINARY} -appBin ${BIN_FILE}
+    COMMENT "Building ${HEX_FILE} \nBuilding ${BIN_FILE} \nSigning ${BIN_FILE}")
+

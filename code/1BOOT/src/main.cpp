@@ -29,27 +29,63 @@ int main()
     // Check the scratch area to see if it contains a valid image
     NANO_ERROR statusScratch = ValidateImage(slotScratch);
 
-    // If the scratch area contains a valid image, 
-    // we should try to copy it into the correct sector
-    if (statusScratch == E_OK)
-    {
-
-    }
-
     // Validate the 2BOOT image in flash
     NANO_ERROR status2BOOT = ValidateImage(slot2BOOT);
 
-    // Try and start 2BOOT
-    if (status2BOOT == E_OK)
+    // Track what action 1BOOT should take
+    NANO_ACTION actionToPerform = FATAL_ERROR;
+    
+    // If both scratch and 2BOOT are valid, check versions
+    if ((statusScratch == E_OK) && (status2BOOT == E_OK))
     {
-        StartImageFromFlash(slot2BOOT);
+        NANO_COMPARE compare = ImageVersionCompare(slotScratch, slot2BOOT);
+
+        if (compare == FIRST_IS_GREATER)
+        {
+            actionToPerform = BEGIN_UPGRADE;
+        }
+        else
+        {
+            actionToPerform = CONTINUE_BOOT;
+        }
+    }
+    else if (statusScratch == E_OK)
+    {
+        actionToPerform = BEGIN_RECOVERY;
+    }
+    else if (status2BOOT == E_OK)
+    {
+        actionToPerform = CONTINUE_BOOT;
     }
 
-    // Unable to find a valid 2BOOT image... device is bricked and requires JTAG to repair.
-    // Blink our SOS pattern to indicate we're hosed
+    switch (actionToPerform)
+    {
+        case CONTINUE_BOOT:
+            StartImageFromFlash(slot2BOOT);
+            break;
+
+        // TODO: distinguish between these cases
+        case BEGIN_UPGRADE:
+        case BEGIN_RECOVERY:
+            // TODO: Define Nanoboot API to touch flash
+            break;
+
+        case FATAL_ERROR:
+            // Unable to find a valid 2BOOT image... device is bricked and requires JTAG to repair.
+            // Blink our SOS pattern to indicate we're hosed
+            SOS();
+            break;
+
+        // Should be impossible to hit this case. It may indicate memory corruption
+        default:
+            HCF();
+            break;
+    }
+    
+    // Should never get here. Trap in the HCF routine.
     while (true)
     {
-        SOS();
+        HCF();
     }
 
     return 0;

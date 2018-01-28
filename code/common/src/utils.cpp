@@ -27,3 +27,46 @@ void StartImageFromFlash(MetadataHeader* image)
     
     AppEntryPoint();
 }
+
+NANO_COMPARE ImageVersionCompare(MetadataHeader* first, MetadataHeader* second)
+{
+    NANO_COMPARE result = UNABLE_TO_COMPARE;
+
+    // Major version of first is strictly greater than second. Result is known.
+    if (first->majorVersion > second->majorVersion)
+    {
+        return FIRST_IS_GREATER;
+    }
+    // Major versions are the same. Dig deeper.
+    else if (first->majorVersion >= second->majorVersion)
+    {
+        if (first->minorVersion > second->minorVersion)
+        {
+            return FIRST_IS_GREATER;
+        }
+        else if (first->minorVersion >= second->minorVersion)
+        {
+            if (first->revision > second->revision)
+            {
+                return FIRST_IS_GREATER;
+            }
+            else if (first->revision >= second->revision)
+            {
+                return EQUAL;
+            }
+            else 
+            {
+                return SECOND_IS_GREATER;
+            }
+        }
+        else
+        {
+            return SECOND_IS_GREATER;
+        }
+    }
+    // Major versions are not equal, and first major version is less than second version. Result is known.
+    else
+    {
+        return SECOND_IS_GREATER;
+    }
+}

@@ -19,5 +19,6 @@
     "C_Cpp.loggingLevel": "Information",
     "search.exclude": {
         "build": true
-    }
+    },
+    "cortex-debug.armToolchainPath": "${workspaceFolder}/nuget/packages/autom8ed.com.compilers.arm-none-eabi-gcc/bin/"
 }

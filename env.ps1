@@ -11,6 +11,7 @@ function Add-ToPath([string] $path)
 $WorkspaceRoot = $PSScriptRoot
 
 Add-ToPath -path "$PSScriptRoot\nuget"
+Add-ToPath -path "$PSScriptRoot\scripts"
 
 # Install all nuget packages
 nuget.exe install "$WorkspaceRoot\nuget\packages.config" -ConfigFile "$WorkspaceRoot\nuget\nuget.config" -ExcludeVersion

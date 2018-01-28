@@ -26,6 +26,17 @@
             "problemMatcher": []
         },
         {
+            "label": "Flash Signed 2BOOT",
+            "type": "shell",
+            "command": "powershell",
+            "args": [
+                "scripts\\Flash-Hex.ps1",
+                "-jlinkFile",
+                "code\\2BOOT\\2BOOT-SIGNED.jlink"
+            ],
+            "problemMatcher": []
+        },
+        {
             "label": "Start GDB Server",
             "type": "shell",
             "command": "powershell",

@@ -1,0 +1,5 @@
+h
+loadbin build\2BOOT\2BOOT.bin.ni.bin, 0xA000
+r
+g
+q

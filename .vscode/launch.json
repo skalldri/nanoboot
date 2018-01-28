@@ -84,6 +84,22 @@
                 }
             ],
             "targetArchitecture": "arm"
+        },
+        {
+            "type": "cortex-debug",
+            "request": "launch",
+            "servertype": "jlink",
+            "name": "2BOOT Cortex Debug",
+            "executable": "build/2BOOT/2BOOT.elf",
+            "device": "NRF52832_XXAA"
+        },
+        {
+            "type": "cortex-debug",
+            "request": "launch",
+            "servertype": "jlink",
+            "name": "1BOOT Cortex Debug",
+            "executable": "build/1BOOT/1BOOT.elf",
+            "device": "NRF52832_XXAA"
         }
     ],
     "compounds": []

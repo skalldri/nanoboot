@@ -2,6 +2,7 @@
     "recommendations": [
         "ms-vscode.powershell",
         "twxs.cmake",
-        "vector-of-bool.cmake-tools"
+        "vector-of-bool.cmake-tools",
+        "marus25.cortex-debug"
     ]
 }

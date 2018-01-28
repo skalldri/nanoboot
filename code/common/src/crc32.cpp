@@ -69,9 +69,6 @@ NANO_ERROR ValidateImage(MetadataHeader* image)
         return E_NO_MAGIC;
     }
 
-    // TODO: Remove this once CRC is implemented
-    return E_OK;
-
     // Verify the CRC is not all 0x00 or all 0xFF
     if (image->crc32 == 0xFFFFFFFF || image->crc32 == 0x00000000)
     {
@@ -90,7 +87,7 @@ NANO_ERROR ValidateImage(MetadataHeader* image)
     // The CRC and the image length look OK
     // We're going to validate imageLength - 4 bytes because we exclude the CRC from it's own calculation
     uint32_t bytesToCrc = image->imageSize - sizeof(uint32_t);
-    uint32_t* startingLocation = (uint32_t*)(&(image->crc32) + sizeof(image->crc32));
+    uint32_t* startingLocation = (uint32_t*)(((uint8_t*)(&(image->crc32))) + sizeof(image->crc32));
 
     uint32_t crcResult = crc32(startingLocation, bytesToCrc);
 
