@@ -8,6 +8,9 @@ enum NANO_ERROR {
     E_INVALID_LENGTH = 2,
     E_CRC_MISMATCH = 3,
     E_NO_MAGIC = 4,
+    E_UNALIGNED_ACCESS = 5,
+    E_OVERFLOW = 6,
+    E_UNDERFLOW = 7,
 };
 
 enum NANO_ACTION {

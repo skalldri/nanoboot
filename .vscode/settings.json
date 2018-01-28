@@ -11,7 +11,12 @@
         "valarray": "cpp",
         "random": "cpp",
         "cstdint": "cpp",
-        "system_error": "cpp"
+        "system_error": "cpp",
+        "vector": "cpp",
+        "functional": "cpp",
+        "*.tcc": "cpp",
+        "ratio": "cpp",
+        "type_traits": "cpp"
     },
     "cmake.useCMakeServer" : false,
     "C_Cpp.intelliSenseEngine": "Default",

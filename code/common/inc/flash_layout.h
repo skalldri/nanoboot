@@ -47,6 +47,7 @@ enum ImageSector {
     ONE_BOOT      = 1,
     TWO_BOOT      = 2,
     APP           = 3,
+    SCRATCH       = 4,
     MAX_RESERVED  = 0xF
 };
 

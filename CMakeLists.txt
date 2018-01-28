@@ -20,11 +20,13 @@ set(NANOBOOT_SOURCES
     ${NANOBOOT_SOURCES}
     ${NANOBOOT_ROOT}/code/hal/${NANOBOOT_MCU}/src/gpio.cpp
     ${NANOBOOT_ROOT}/code/hal/${NANOBOOT_MCU}/src/util.cpp
+    ${NANOBOOT_ROOT}/code/hal/${NANOBOOT_MCU}/src/flash.cpp
 )
 
 set(NANOBOOT_INCLUDES
     ${NANOBOOT_INCLUDES}
     ${NANOBOOT_ROOT}/code/hal/base/inc
+    ${NANOBOOT_ROOT}/code/common/inc
     ${NANOBOOT_ROOT}/code/hal/${NANOBOOT_MCU}/inc
 )
 

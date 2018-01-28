@@ -18,6 +18,7 @@ set(NANOBOOT_INCLUDES
     ${NANOBOOT_ROOT}/sdks/nordic/nRF5_SDK_14.0.0_3bcc1f7/components/device
     ${NANOBOOT_ROOT}/sdks/nordic/nRF5_SDK_14.0.0_3bcc1f7/components/drivers_nrf/hal
     ${NANOBOOT_ROOT}/sdks/nordic/nRF5_SDK_14.0.0_3bcc1f7/components/drivers_nrf/delay
+    ${NANOBOOT_ROOT}/sdks/nordic/nRF5_SDK_14.0.0_3bcc1f7/components/drivers_nrf/ble_flash
     ${NANOBOOT_ROOT}/sdks/nordic/nRF5_SDK_14.0.0_3bcc1f7/components/libraries/util
     ${NANOBOOT_ROOT}/sdks/nordic/nRF5_SDK_14.0.0_3bcc1f7/components/drivers_nrf/nrf_soc_nosd
     ${NANOBOOT_ROOT}/sdks/nordic/nRF5_SDK_14.0.0_3bcc1f7/config
@@ -29,6 +30,7 @@ set(NANOBOOT_INCLUDES
 set(NANOBOOT_SOURCES
     ${NANOBOOT_ROOT}/sdks/nordic/nRF5_SDK_14.0.0_3bcc1f7/components/toolchain/system_nrf52.c
     ${NANOBOOT_ROOT}/sdks/nordic/nRF5_SDK_14.0.0_3bcc1f7/components/toolchain/gcc/gcc_startup_nrf52.S
+    ${NANOBOOT_ROOT}/sdks/nordic/nRF5_SDK_14.0.0_3bcc1f7/components/drivers_nrf/ble_flash/ble_flash.c
 )
 
 # include the AVR compiler definitions
