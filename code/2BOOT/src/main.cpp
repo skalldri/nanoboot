@@ -2,16 +2,22 @@
 #include <crc32.h>
 #include <util.h>
 #include <gpio.h>
+#include <fastboot_mcu.h>
 
+// TODO: Make these configurable in board files
+// P0.14
 #define LED_PIN 17
 #define INTER_BLINK_LENGTH 100
 #define TINY_BLINK_LENGTH  80
 #define SHORT_BLINK_LENGTH 500
 #define LONG_BLINK_LENGTH  1000
 
+// P0.13
+#define FASTBOOT_BUTTON_PIN 13
+#define FASTBOOT_ACTIVE_BUTTON_STATE false
+
 MetadataHeader* slot2BOOT = (MetadataHeader*)(START_ADDRESS_2BOOT);
 MetadataHeader* slotScratch = (MetadataHeader*)(START_ADDRESS_SCRATCH);
-
 
 // Function declarations
 void SOS();
@@ -25,6 +31,16 @@ int main()
 
     gpio.configure_output(LED_PIN);
     gpio.clear(LED_PIN);
+
+    gpio.configure_input(FASTBOOT_BUTTON_PIN, PULL_UP);
+
+    if (gpio.read(FASTBOOT_BUTTON_PIN) != FASTBOOT_ACTIVE_BUTTON_STATE)
+    {
+        Fastboot();
+
+        // Fastboot should never return, or it should reset the MCU. Halt and catch fire if we exit Fastboot
+        HCF();
+    }
 
     // Do something fun in 2BOOT for now... PWM the LED (using our internal timer)
     while (true)
@@ -124,4 +140,4 @@ void HCF()
         gpio.clear(LED_PIN);
         util.delay(TINY_BLINK_LENGTH);
     }
-}   
+}

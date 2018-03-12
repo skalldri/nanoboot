@@ -8,6 +8,7 @@ set(SOURCE_FILE_PATHS
     ${2BOOT_ROOT}/src/main.cpp
     ${2BOOT_ROOT}/src/header.cpp
     ${COMMON_ROOT}/src/crc32.cpp
+    ${COMMON_ROOT}/src/fastboot_mcu.cpp
 )
 
 set(INCLUDE_PATHS
@@ -50,6 +51,7 @@ target_link_libraries(${TARGET} -Wl,-Map=${TARGET_NAME}.map)
 target_link_libraries(${TARGET} -Wl,--gc-sections)
 #target_link_libraries(${TARGET} -Wl,-flto)
 target_link_libraries(${TARGET} -Og)
+target_link_libraries(${TARGET} -v)
 
 #target_link_libraries(${TARGET} -L${GCC_LD_SEARCH})
 

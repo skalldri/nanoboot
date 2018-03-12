@@ -91,7 +91,9 @@
             "servertype": "jlink",
             "name": "2BOOT Cortex Debug",
             "executable": "build/2BOOT/2BOOT.elf",
-            "device": "NRF52832_XXAA"
+            "device": "NRF52832_XXAA",
+            "showDevDebugOutput":false,
+            "svdFile": "${workspaceFolder}/sdks/nordic/nRF5_SDK_14.0.0_3bcc1f7/svd/nrf52.svd"
         },
         {
             "type": "cortex-debug",
@@ -99,7 +101,9 @@
             "servertype": "jlink",
             "name": "1BOOT Cortex Debug",
             "executable": "build/1BOOT/1BOOT.elf",
-            "device": "NRF52832_XXAA"
+            "device": "NRF52832_XXAA",
+            "showDevDebugOutput":false, 
+            "svdFile": "${workspaceFolder}/sdks/nordic/nRF5_SDK_14.0.0_3bcc1f7/svd/nrf52.svd"
         }
     ],
     "compounds": []

@@ -21,6 +21,7 @@ set(NANOBOOT_SOURCES
     ${NANOBOOT_ROOT}/code/hal/${NANOBOOT_MCU}/src/gpio.cpp
     ${NANOBOOT_ROOT}/code/hal/${NANOBOOT_MCU}/src/util.cpp
     ${NANOBOOT_ROOT}/code/hal/${NANOBOOT_MCU}/src/flash.cpp
+    ${NANOBOOT_ROOT}/code/hal/${NANOBOOT_MCU}/src/serial.cpp
 )
 
 set(NANOBOOT_INCLUDES

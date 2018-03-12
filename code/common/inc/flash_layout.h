@@ -41,6 +41,7 @@ struct MetadataHeader {
 static_assert(sizeof(MetadataHeader) == 128, "MetadataHeader must be 128 bytes");
 
 #define HEADER_MAGIC_NUMBER 0x4F4E414E
+#define DEBUG_MAGIC_NUMBER 0x47424544
 
 enum ImageSector {
     ZERO_RESERVED = 0,

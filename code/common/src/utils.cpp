@@ -1,4 +1,5 @@
 #include <utils.h>
+#include "nrf52.h"
 
 typedef void (*fptr)();
 
@@ -25,6 +26,10 @@ void StartImageFromFlash(MetadataHeader* image)
     // TODO: reset stack pointer before jumping into app
     // TODO: use a naked function call to ensure we don't put useless return values on the stack
     
+    // ARM spec requires we issue a __DSB() after updating the VTOR
+    SCB->VTOR = (uint32_t)vectorTable;
+    __DSB();
+
     AppEntryPoint();
 }
 

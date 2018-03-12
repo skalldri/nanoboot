@@ -63,6 +63,14 @@ NANO_ERROR TestCRC()
 // Returns other NANO_ERROR codes if the image does not pass validation
 NANO_ERROR ValidateImage(MetadataHeader* image)
 {
+#ifndef NDEBUG
+    // If we are a debug version of 1BOOT, we will accept any image with a debug magic number
+    if (image->crc32 == DEBUG_MAGIC_NUMBER)
+    {
+        return E_OK;
+    }
+#endif
+
     // Is our magic value present? Bail quickly if no.
     if (image->magicNumber != HEADER_MAGIC_NUMBER)
     {

@@ -10,7 +10,7 @@ public:
     void clear(uint16_t pin);
     
     void configure_output(uint16_t pin);
-    void configure_input(uint16_t pin);
+    void configure_input(uint16_t pin, GPIO_PULL pull);
 
 };
 

@@ -1,8 +1,8 @@
 #include <flash_layout.h>
 
 static const MetadataHeader nanobootHeader __attribute__((used)) __attribute__ ((section (".header"))) = {
-    .crc32              = 0x00000000,               // Will be inserted by post-processing
-    .imageSize          = 0x00000000,               // Will be inserted by post-processing
+    .crc32              = DEBUG_MAGIC_NUMBER,       // Will be inserted by post-processing
+    .imageSize          = DEBUG_MAGIC_NUMBER,       // Will be inserted by post-processing
     .platformId         = NANOBOOT_PLATFORM,        // Defined by the MCU Cmake definition
     .sector             = ImageSector::TWO_BOOT,
     .magicNumber        = HEADER_MAGIC_NUMBER,

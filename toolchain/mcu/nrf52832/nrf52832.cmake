@@ -31,6 +31,7 @@ set(NANOBOOT_SOURCES
     ${NANOBOOT_ROOT}/sdks/nordic/nRF5_SDK_14.0.0_3bcc1f7/components/toolchain/system_nrf52.c
     ${NANOBOOT_ROOT}/sdks/nordic/nRF5_SDK_14.0.0_3bcc1f7/components/toolchain/gcc/gcc_startup_nrf52.S
     ${NANOBOOT_ROOT}/sdks/nordic/nRF5_SDK_14.0.0_3bcc1f7/components/drivers_nrf/ble_flash/ble_flash.c
+    ${NANOBOOT_ROOT}/sdks/nordic/nRF5_SDK_14.0.0_3bcc1f7/components/drivers_nrf/uart/nrf_drv_uart.c
 )
 
 # include the AVR compiler definitions

@@ -16,7 +16,13 @@
         "functional": "cpp",
         "*.tcc": "cpp",
         "ratio": "cpp",
-        "type_traits": "cpp"
+        "type_traits": "cpp",
+        "memory": "cpp",
+        "future": "cpp",
+        "istream": "cpp",
+        "tuple": "cpp",
+        "iterator": "cpp",
+        "scoped_allocator": "cpp"
     },
     "cmake.useCMakeServer" : false,
     "C_Cpp.intelliSenseEngine": "Default",
