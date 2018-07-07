@@ -10,6 +10,10 @@
 // How many buffers in the serial RX ring. Min 3
 #define NUM_RX_BUFFER 3
 
+struct RingBufferEntry {
+    
+}
+
 class Serial_impl : public Serial_base {
 
 public:

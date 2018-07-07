@@ -31,8 +31,11 @@ void Serial_impl::IRQ_Handler()
         // The contents of this->RxBuffer[RxNextBuffer - 2] contain the most recent read, and
         // this->RxBuffer[RxNextBuffer - 1] has been automatically swapped in
 
-        int mostRecentlyFilled = (RxNextBuffer - 2) % NUM_RX_BUFFER;
-        int currentlyInUse = (RxNextBuffer - 1) % NUM_RX_BUFFER;
+        int mostRecentlyFilled = (RxNextBuffer - 2)
+        mostRecentlyFilled %= NUM_RX_BUFFER;
+
+        int currentlyInUse = (RxNextBuffer - 1)
+        currentlyInUse %= NUM_RX_BUFFER;
 
         // If the buffer we're about to swap in has not been emptied, Buffer Overflow
         if (RxBufferInUse[RxNextBuffer])
@@ -105,9 +108,14 @@ Serial_impl::~Serial_impl()
     irqReference[deviceIndex] = nullptr;
 }
 
-void Serial_impl::Read(char** data)
+void Serial_impl::ReadLine(char** data)
 {
-    nrf_uarte_rx_buffer_set(UART_PTR, (uint8_t*)this->RxBuffer, RX_BUFFER_SIZE);
+
+}
+
+void Serial_impl::Read(char** data, uint32_t length)
+{
+    
 }
 
 void Serial_impl::Write(char* data, uint32_t length)
